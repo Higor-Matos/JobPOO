@@ -1,18 +1,27 @@
-## Getting Started
+>>>>> Trabalho <<<<<
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Distribução:
+Classes em java: 7 pts
+Parte gráfica 3 pts.
 
-## Folder Structure
+Objetivo:
+Montar diagrama de classe com ocorrencia de herança, associação, encapsulamento, polimorfismo e classe abstrata. Fazer interface gráfica em swing para captar dados e armazenar no diagrama de classe utilizando uma estrutra arraylist. O Arraylist vai ser do tipo de objetos da classe que eu criei. A parte gráfica deve ter botões, imagem, entradas.
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+1 - Definir tema.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+2 - Desenhar diagrama de classe.
+    Requisitos:
+    Herança
+    Associação
+    Encapsulamento
+    Polimorfismo
+    Classe Abstrata
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+3 - Implementar classes.
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+4 - Implementar parte gráfica.
+    Botões
+    Imagem
+    Entradas
+    
