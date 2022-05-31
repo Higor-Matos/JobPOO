@@ -11,7 +11,6 @@ Montar diagrama de classe com ocorrencia de herança, associação, encapsulamen
 1 - Definir tema.
 
 2 - Desenhar diagrama de classe.
-    Requisitos:
     Herança
     Associação
     Encapsulamento
@@ -24,4 +23,4 @@ Montar diagrama de classe com ocorrencia de herança, associação, encapsulamen
     Botões
     Imagem
     Entradas
-    
+
