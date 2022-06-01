@@ -1,7 +1,6 @@
 abstract class UrlAbstrata{
-    public String Endereco;
+    private String Endereco;
     public Reputacao reputacao;
-    private boolean validacaoUrl;
 
     UrlAbstrata(){
         reputacao = new Reputacao();
@@ -9,15 +8,11 @@ abstract class UrlAbstrata{
 
     public abstract boolean validaUrl(String x);
 
-    public boolean getValidacaoUrl(){
-        return this.validacaoUrl;
+    public String getEndereco(){
+        return this.Endereco;
     }
 
-    public void setValidacaoUrl(String x){
-        //If testar validacaoUrl
-        this.validacaoUrl = true;
-        this.validacaoUrl = false;
+    public void setEndereco(String x){
+        this.Endereco = x;
     }
-
-
 }

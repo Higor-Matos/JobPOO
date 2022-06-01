@@ -1,13 +1,25 @@
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse.BodyHandlers;
+
 public class Reputacao{
     public boolean confiavel;
     private String listaNaoConfiavel;
 
-
+    Reputacao(){//Sempre começo o programa chamando a função para baixar as listas
+        try {
+            setListaNaoConfiavel(requestListaNaoConfiavel());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     public String getListaNaoConfiavel(){
         return this.listaNaoConfiavel;
     }
 
-    public void setListaNaoConfiavel(String x){
+    public void setListaNaoConfiavel(String x) throws IOException, InterruptedException{
         this.listaNaoConfiavel = x;
     }
 
@@ -20,7 +32,16 @@ public class Reputacao{
     }
 
     private String requestListaNaoConfiavel(){
-        String listaGit = " ";
-        return listaGit;
+        URI uri = URI.create("http://sbc.io/hosts/hosts");
+        HttpRequest request = HttpRequest.newBuilder(uri).build();
+        String content = " ";
+        try {
+            content = HttpClient.newHttpClient().send(request, BodyHandlers.ofString()).body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return content;
     }
 }
