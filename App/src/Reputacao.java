@@ -32,7 +32,7 @@ public class Reputacao{
     }
 
     private String requestListaNaoConfiavel(){
-        URI uri = URI.create("http://sbc.io/hosts/hosts");
+        URI uri = URI.create("https://raw.githubusercontent.com/Higor-Matos/JobPOO/master/App/hostsblock/listblock");
         HttpRequest request = HttpRequest.newBuilder(uri).build();
         String content = " ";
         try {

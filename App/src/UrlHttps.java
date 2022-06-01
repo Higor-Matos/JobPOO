@@ -21,9 +21,9 @@ public class UrlHttps extends UrlAbstrata {
             conn.connect();
             return true;// Conseguiu conexão
         } catch (MalformedURLException e) {
-            return false;// Não conseguiu conectar
+            return false;// Não conseguiu conectar por conta da URL escrita errada
         } catch (IOException e) {
-            return false;// Não conseguiu conectar
+            return false;// Não conseguir conectar por erro no sistema (internet ruim, bloqueio externo, site fora do ar...)
         }
     }
 }
