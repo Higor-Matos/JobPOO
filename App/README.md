@@ -11,13 +11,14 @@ Montar diagrama de classe com ocorrencia de herança, associação, encapsulamen
 1 - Definir tema.
 
 2 - Desenhar diagrama de classe.
-    Herança
-    Associação
-    Encapsulamento
-    Polimorfismo
-    Classe Abstrata
+    Herança ✔
+    Associação ✔
+    Encapsulamento ✔
+    Polimorfismo ✔
+    Classe Abstrata ✔
+    ArrayList ✔
 
-3 - Implementar classes.
+3 - Implementar classes. ✔
 
 4 - Implementar parte gráfica.
     Botões

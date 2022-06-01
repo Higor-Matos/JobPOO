@@ -1,4 +1,4 @@
-abstract class UrlAbstrata{
+public abstract class UrlAbstrata{
     private String Endereco;
     public Reputacao reputacao;
 
