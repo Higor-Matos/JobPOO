@@ -25,7 +25,7 @@ public class App {
                 if(urlhttp.validaUrl(Entrada)){
                     urlhttp.setEndereco(Entrada);
                     if(urlhttp.getEndereco().equals(urlhttp.reputacao.getListaNaoConfiavel())){
-                        urlsNaoConfiaveis.add(Entrada);
+                        urlsNaoConfiaveis.add(urlhttp.getEndereco());
                     }
                 }
             } else {
