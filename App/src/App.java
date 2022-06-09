@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -23,6 +24,10 @@ public class App {
         f.setLocation(500,300);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fechando de fato o programa
 
+        ImageIcon iconLogo = new ImageIcon("App/images/icoAdguard.png");
+
+        l.setIcon(iconLogo);
+        
         p.add(l);
         p.add(t);
         b.addActionListener(action);
@@ -43,16 +48,15 @@ public class App {
             if (Entrada.contains("https")) {//Verifico o protocolo do endereco
                 if(urlhttps.validaUrl(Entrada)){//Chamo a função para verificar se o endereco é valido
                     urlhttps.setEndereco(Entrada);//Quando válido, coloco na varíavel do objeto
-                    if(!urlhttps.getEndereco().contains(urlhttps.reputacao.getListaNaoConfiavel())){
-                        urlsNaoConfiaveis.add(urlhttps.getEndereco());//Se não for confiável, adiciona na lista.
+                    if(!urlhttps.reputacao.verificaReputacaoNaLista(urlhttps.getEndereco())){
+                        urlsNaoConfiaveis.add(urlhttps.getEndereco());//Se não for confiável, adiciona na lista
                     }
                 }
             } else if (Entrada.contains("http")) {
                 if(urlhttp.validaUrl(Entrada)){
                     urlhttp.setEndereco(Entrada);
-                    if(!urlhttp.getEndereco().equals(urlhttp.reputacao.getListaNaoConfiavel())){
-                        urlsNaoConfiaveis.add(urlhttp.getEndereco());
-                    }
+                if(!urlhttp.reputacao.verificaReputacaoNaLista(urlhttp.getEndereco()));
+                    urlsNaoConfiaveis.add(urlhttp.getEndereco());
                 }
             } else {
                 System.out.println(">>> URL inválida <<< \nVerifique se inseriu corretamente com o protocolo HTTP ou HTTPS");
