@@ -1,8 +1,36 @@
 import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import javax.swing.JLabel;
+
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import java.util.ArrayList; // import the ArrayList class
 
 public class App {
     public static void main(String[] args) {
+        JFrame f = new JFrame();//Instaciando Swing
+        JPanel p = new JPanel();
+        JLabel l = new JLabel("Insira a Url:");
+        JTextField t = new JTextField(10);
+        JButton b = new JButton("Ok");
+        BotaoAction action = new BotaoAction(t);
+        f.setTitle("Adguard Hosts");
+        f.setSize(300,200);
+        f.setLocation(500,300);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fechando de fato o programa
+
+        p.add(l);
+        p.add(t);
+        b.addActionListener(action);
+        p.add(b);
+        f.add(p);
+        f.setVisible(true);
+
+
         Scanner scanner = new Scanner(System.in);
         UrlHttp urlhttp = new UrlHttp();
         UrlHttps urlhttps = new UrlHttps();
