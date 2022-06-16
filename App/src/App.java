@@ -9,32 +9,47 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList; // import the ArrayList class
 
-public class App {
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class App{
     public static void main(String[] args) {
-        JFrame f = new JFrame();//Instaciando Swing
-        JPanel p = new JPanel();
-        JLabel l = new JLabel("Insira a Url:");
-        JTextField t = new JTextField(10);
-        JButton b = new JButton("Ok");
-        BotaoAction action = new BotaoAction(t);
-        f.setTitle("Adguard Hosts");
-        f.setSize(300,200);
-        f.setLocation(500,300);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Fechando de fato o programa
 
-        ImageIcon iconLogo = new ImageIcon("App/images/icoAdguard.png");
-
-        l.setIcon(iconLogo);
+        JFrame frame = new JFrame(); //Janela
+        frame.setSize (500, 600); 
+        frame.setLocationRelativeTo(null);//Centralizando janela no meio
+        frame.setTitle("Adguard Hosts");
+        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE); 
+        frame.setLayout(new BorderLayout());
+        frame.setResizable(false);//Impedindo redimensionamento
         
-        p.add(l);
-        p.add(t);
-        b.addActionListener(action);
-        p.add(b);
-        f.add(p);
-        f.setVisible(true);
+        ImageIcon imagePng = new ImageIcon("App/images/icoAdguardTop.png");//Imagem
+        JLabel image = new JLabel();
+        image.setIcon(imagePng);
+        frame.add(image,BorderLayout.NORTH);
 
+        JTextField campoInsercao = new JTextField(25);
+
+        JButton enviar = new JButton("Enviar");
+        BotaoAction action = new BotaoAction(campoInsercao);
+        enviar.addActionListener(action);
+        JButton listBlock = new JButton("Lista de Bloqueio");
+        
+
+        JPanel p = new JPanel(); 
+        p.add(new JLabel("Insira uma URL:")); 
+        p.add(campoInsercao);
+        p.add(enviar);
+        p.add(listBlock);
+        
+        frame.add(p,BorderLayout.CENTER);
+        
+        frame.setVisible(true);//Apresentando a janela
+        
 
         Scanner scanner = new Scanner(System.in);
         UrlHttp urlhttp = new UrlHttp();
