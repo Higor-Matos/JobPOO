@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 
 import javax.swing.JOptionPane;
 
@@ -21,6 +20,5 @@ public class BotaoActionUrlListBlock implements ActionListener {
             output += everything + "\n";       
         }
         JOptionPane.showMessageDialog(null, output);
-        JOptionPane.showMessageDialog(null, "" + botaoActionEnviar.urlsBloqueadas);
     }         
 }
