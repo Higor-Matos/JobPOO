@@ -1,28 +1,43 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class BotaoAction implements ActionListener {
+import javax.swing.JOptionPane;
+
+public class BotaoActionEnviar implements ActionListener {
+    public ArrayList<String> urlsBloqueadas = new ArrayList<>();
+    private static BotaoActionEnviar botaoActionEnviar;
+    private JTextField t;
     UrlHttp urlhttp = new UrlHttp();
     UrlHttps urlhttps = new UrlHttps();
-    private JTextField t;
     
-    public BotaoAction(JTextField t){
+    public BotaoActionEnviar(JTextField t){
         this.t = t; 
+    }
+
+    public static BotaoActionEnviar newInstance(JTextField x){
+        if(botaoActionEnviar == null){
+            botaoActionEnviar = new BotaoActionEnviar(x);//Satisfazer construtor padrão);
+        }
+        return botaoActionEnviar;
+    }
+
+    public static BotaoActionEnviar getInstance(){
+        return botaoActionEnviar;
     }
 
     public void actionPerformed(ActionEvent e) {//Pegando o que foi digitado
         validation(t.getText());
     }
 
-    public void validation(String entrada){
-        ArrayList<String> urlsTestadas = new ArrayList<String>();
 
+    public void validation(String entrada){
         if (entrada.contains("https")) {//Verifico o protocolo do endereco
             if(urlhttps.validaUrl(entrada)){//Chamo a função para verificar se o endereco é valido
                 urlhttps.setEndereco(entrada);//Quando válido, coloco na varíavel do objeto
                 if(!urlhttps.reputacao.verificaReputacaoNaLista(urlhttps.getEndereco())){
-                    urlsTestadas.add(urlhttps.getEndereco());//Se não for confiável, adiciona na lista
+                    urlsBloqueadas.add(urlhttps.getEndereco());//Se não for confiável, adiciona na lista
                     JOptionPane.showMessageDialog(null, "                 URL Não Confiável\n        Adicionada a lista de bloqueio\nURL inserida: " + entrada);
                 }else{
                     JOptionPane.showMessageDialog(null, "                 URL Confiável\nURL inserida: " + entrada);
@@ -32,7 +47,7 @@ public class BotaoAction implements ActionListener {
             if(urlhttp.validaUrl(entrada)){
                 urlhttp.setEndereco(entrada);
             if(!urlhttp.reputacao.verificaReputacaoNaLista(urlhttp.getEndereco()));
-                urlsTestadas.add(urlhttp.getEndereco());
+                urlsBloqueadas.add(urlhttp.getEndereco());//Se não for confiável, adiciona na lista
                 JOptionPane.showMessageDialog(null, "                 URL Não Confiável\n        Adicionada a lista de bloqueio\nURL inserida: " + entrada);
             }else{
                 JOptionPane.showMessageDialog(null, "                 URL Confiável\nURL inserida: " + entrada);
@@ -40,8 +55,6 @@ public class BotaoAction implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(null, "                                            URL inválida\nVerifique se inseriu corretamente com o protocolo HTTP ou HTTPS\nExemplo: https://www.google.com.br/\nURL inserida: " + entrada);
         }
-        System.out.println("\n >>>> Lista de Urls não confiáveis <<<<\n" + urlsTestadas);
+        //System.out.println("\n >>>> Lista de Urls não confiáveis <<<<\n" + urlsTestadas.getUrlsTestadas());
     }
-
-
 }

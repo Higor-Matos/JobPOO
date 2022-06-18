@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,7 +15,6 @@ import javax.swing.*;
 
 public class App{
     public static void main(String[] args) {
-
         JFrame frame = new JFrame(); //Janela
         frame.setSize (500, 600); 
         frame.setLocationRelativeTo(null);//Centralizando janela no meio
@@ -39,10 +36,13 @@ public class App{
 
         
         JButton enviar = new JButton("Enviar");
-        BotaoAction action = new BotaoAction(campoInsercao);
-        enviar.addActionListener(action);
+        BotaoActionEnviar actionEnviar = BotaoActionEnviar.newInstance(campoInsercao);
+        enviar.addActionListener(actionEnviar);
+
 
         JButton listBlock = new JButton("URLs Bloqueadas");
+        BotaoActionUrlListBlock actionListBlock = new BotaoActionUrlListBlock(new JTextField());
+        listBlock.addActionListener(actionListBlock);
 
         enviar.setBounds(185, 190, 120, 30);
         listBlock.setBounds(155, 500, 180, 30);
@@ -51,9 +51,6 @@ public class App{
         frame.add(p,BorderLayout.CENTER);
         
         frame.setVisible(true);//Apresentando a janela
-        
-        String entrada = campoInsercao.getText();
-
 
     }
 }
