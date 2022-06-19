@@ -2,6 +2,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class App{
         //frame.setResizable(false);//Impedindo redimensionamento
         
         ImageIcon imagePng = new ImageIcon("App/images/icoAdguardTop.png");//Imagem
+        ImageIcon iconePng = new ImageIcon("App/images/icoAdguard.png");//Icone
         JLabel image = new JLabel();
         image.setIcon(imagePng);
         frame.add(image,BorderLayout.NORTH);        
@@ -68,6 +70,7 @@ public class App{
         frame.add(p);
         //frame.add(textArea);
         //frame.pack();
+        frame.setIconImage(iconePng.getImage());
         frame.setVisible(true);//Apresentando a janela
 
     }

@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
 public class BotaoActionEnviar implements ActionListener {
+    ImageIcon icoAtencao = new ImageIcon("App/images/icoAtencao.png");//Icone
+    ImageIcon icoErro = new ImageIcon("App/images/icoErro.png");//Icone
+    ImageIcon icoOk = new ImageIcon("App/images/icoOk.png");//Icone
+    ImageIcon icoVirus = new ImageIcon("App/images/icoVirus.png");//Icone
     public ArrayList<String> urlsBloqueadas = new ArrayList<>();
     private static BotaoActionEnviar botaoActionEnviar;
     private JTextField t;
@@ -15,7 +17,6 @@ public class BotaoActionEnviar implements ActionListener {
 
     public boolean addListaTestadas(String x){
         if(urlsBloqueadas.contains(x)){
-            JOptionPane.showMessageDialog(null, "                 URL Já Testada\n        Encontra-se na lista de bloqueio\nURL inserida: " + x);
             return true; //Já está na lista, então ignorar
         }
         return false;//Não está na lista, então adicinar
@@ -48,10 +49,10 @@ public class BotaoActionEnviar implements ActionListener {
                 if(!urlhttps.reputacao.verificaReputacaoNaLista(urlhttps.getEndereco())){
                     if(!addListaTestadas(urlhttps.getEndereco())){//Verifica se está repetido
                         urlsBloqueadas.add(urlhttps.getEndereco());//Se não for confiável, adiciona na lista
-                        JOptionPane.showMessageDialog(null, "                 URL Não Confiável\n        Adicionada a lista de bloqueio\nURL inserida: " + entrada);
+                        JOptionPane.showMessageDialog(null, "        Adicionada a lista de bloqueio\nURL inserida: " + entrada, "URL Não Confiável", JOptionPane.INFORMATION_MESSAGE,icoVirus);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "                 URL Confiável\nURL inserida: " + entrada);
+                    JOptionPane.showMessageDialog(null, "URL inserida: " + entrada, "URL Confiável", JOptionPane.INFORMATION_MESSAGE,icoOk);
                 }
             }
         } else if (entrada.contains("http")) {
@@ -60,13 +61,13 @@ public class BotaoActionEnviar implements ActionListener {
             if(!urlhttp.reputacao.verificaReputacaoNaLista(urlhttp.getEndereco()));
                 if(!addListaTestadas(urlhttp.getEndereco())){//Verifica se está repetido
                     urlsBloqueadas.add(urlhttp.getEndereco());//Se não for confiável, adiciona na lista
-                    JOptionPane.showMessageDialog(null, "                 URL Não Confiável\n        Adicionada a lista de bloqueio\nURL inserida: " + entrada);
+                    JOptionPane.showMessageDialog(null, "        Adicionada a lista de bloqueio\nURL inserida: " + entrada,"URL Não Confiável", JOptionPane.INFORMATION_MESSAGE,icoVirus);
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "                 URL Confiável\nURL inserida: " + entrada);
+                JOptionPane.showMessageDialog(null, "URL inserida: " + entrada,"URL Confiável",JOptionPane.INFORMATION_MESSAGE,icoVirus);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "                                            URL inválida\nVerifique se inseriu corretamente com o protocolo HTTP ou HTTPS\nExemplo: https://www.google.com.br/\nURL inserida: " + entrada);
+            JOptionPane.showMessageDialog(null, "Verifique se inseriu corretamente com o protocolo HTTP ou HTTPS\nExemplo: https://www.google.com.br/\nURL inserida: " + entrada, "URL Inválida", JOptionPane.INFORMATION_MESSAGE,icoErro);
         }
     }
 }
