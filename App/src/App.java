@@ -1,25 +1,67 @@
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
-
-import javax.swing.JLabel;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class App{
-    public static void main(String[] args) {
+    private static void setFont(FontUIResource myFont) {
+        UIManager.put("CheckBoxMenuItem.acceleratorFont", myFont);
+        UIManager.put("Button.font", myFont);
+        UIManager.put("ToggleButton.font", myFont);
+        UIManager.put("RadioButton.font", myFont);
+        UIManager.put("CheckBox.font", myFont);
+        UIManager.put("ColorChooser.font", myFont);
+        UIManager.put("ComboBox.font", myFont);
+        UIManager.put("Label.font", myFont);
+        UIManager.put("List.font", myFont);
+        UIManager.put("MenuBar.font", myFont);
+        UIManager.put("Menu.acceleratorFont", myFont);
+        UIManager.put("RadioButtonMenuItem.acceleratorFont", myFont);
+        UIManager.put("MenuItem.acceleratorFont", myFont);
+        UIManager.put("MenuItem.font", myFont);
+        UIManager.put("RadioButtonMenuItem.font", myFont);
+        UIManager.put("CheckBoxMenuItem.font", myFont);
+        UIManager.put("OptionPane.buttonFont", myFont);
+        UIManager.put("OptionPane.messageFont", myFont);
+        UIManager.put("Menu.font", myFont);
+        UIManager.put("PopupMenu.font", myFont);
+        UIManager.put("OptionPane.font", myFont);
+        UIManager.put("Panel.font", myFont);
+        UIManager.put("ProgressBar.font", myFont);
+        UIManager.put("ScrollPane.font", myFont);
+        UIManager.put("Viewport.font", myFont);
+        UIManager.put("TabbedPane.font", myFont);
+        UIManager.put("Slider.font", myFont);
+        UIManager.put("Table.font", myFont);
+        UIManager.put("TableHeader.font", myFont);
+        UIManager.put("TextField.font", myFont);
+        UIManager.put("Spinner.font", myFont);
+        UIManager.put("PasswordField.font", myFont);
+        UIManager.put("TextArea.font", myFont);
+        UIManager.put("TextPane.font", myFont);
+        UIManager.put("EditorPane.font", myFont);
+        UIManager.put("TabbedPane.smallFont", myFont);
+        UIManager.put("TitledBorder.font", myFont);
+        UIManager.put("ToolBar.font", myFont);
+        UIManager.put("ToolTip.font", myFont);
+        UIManager.put("Tree.font", myFont);
+        UIManager.put("FormattedTextField.font", myFont);
+        UIManager.put("IconButton.font", myFont);
+        UIManager.put("InternalFrame.optionDialogTitleFont", myFont);
+        UIManager.put("InternalFrame.paletteTitleFont", myFont);
+        UIManager.put("InternalFrame.titleFont", myFont);
+    }
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         JFrame frame = new JFrame(); //Janela
         frame.setSize (500, 600); 
         frame.setLocationRelativeTo(null);//Centralizando janela no meio
         frame.setTitle("Adguard Hosts");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE); 
         frame.setLayout(new BorderLayout());
-        //frame.setResizable(false);//Impedindo redimensionamento
+        frame.setResizable(false);//Impedindo redimensionamento
         
         ImageIcon imagePng = new ImageIcon("App/images/icoAdguardTop.png");//Imagem
         ImageIcon iconePng = new ImageIcon("App/images/icoAdguard.png");//Icone
@@ -29,8 +71,8 @@ public class App{
 
         JPanel p = new JPanel();
         p.add(new JLabel("Insira URL para verificar confiabilidade:")); 
-        JTextField campoInsercao = new JTextField(35);
-        campoInsercao.setBounds(100,25,300,20);
+        JTextField campoInsercao = new JTextField(340);
+        campoInsercao.setBounds(100,25,300,22);
         p.add(campoInsercao);
         JLabel exemplo = new JLabel("Exemplo: https://www.google.com.br/");
         exemplo.setBounds(140,43,300,30);
@@ -68,10 +110,11 @@ public class App{
         frame.add(enviar);
         frame.add(listBlock);
         frame.add(p);
-        //frame.add(textArea);
-        //frame.pack();
         frame.setIconImage(iconePng.getImage());
         frame.setVisible(true);//Apresentando a janela
-
+        
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        setFont(new FontUIResource(new Font("Roboto Regular", Font.PLAIN, 12)));
+        SwingUtilities.updateComponentTreeUI(frame);
     }
 }

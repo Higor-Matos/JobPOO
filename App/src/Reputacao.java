@@ -24,11 +24,10 @@ public class Reputacao{
     }
 
     public boolean verificaReputacaoNaLista(String x){ //Tratar String
-        if(x.contains(getListaNaoConfiavel())){
+        if(listaNaoConfiavel.contains(x)){
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 
     private String requestListaNaoConfiavel(){

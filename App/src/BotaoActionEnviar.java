@@ -52,19 +52,19 @@ public class BotaoActionEnviar implements ActionListener {
                         JOptionPane.showMessageDialog(null, "        Adicionada a lista de bloqueio\nURL inserida: " + entrada, "URL Não Confiável", JOptionPane.INFORMATION_MESSAGE,icoVirus);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "URL inserida: " + entrada, "URL Confiável", JOptionPane.INFORMATION_MESSAGE,icoOk);
+                    JOptionPane.showMessageDialog(null, "URL inserida:\n" + entrada, "URL Confiável", JOptionPane.INFORMATION_MESSAGE,icoOk);
                 }
             }
         } else if (entrada.contains("http")) {
             if(urlhttp.validaUrl(entrada)){
                 urlhttp.setEndereco(entrada);
             if(!urlhttp.reputacao.verificaReputacaoNaLista(urlhttp.getEndereco()));
-                if(!addListaTestadas(urlhttp.getEndereco())){//Verifica se está repetido
+                if(addListaTestadas(urlhttp.getEndereco())){//Verifica se está repetido
                     urlsBloqueadas.add(urlhttp.getEndereco());//Se não for confiável, adiciona na lista
                     JOptionPane.showMessageDialog(null, "        Adicionada a lista de bloqueio\nURL inserida: " + entrada,"URL Não Confiável", JOptionPane.INFORMATION_MESSAGE,icoVirus);
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "URL inserida: " + entrada,"URL Confiável",JOptionPane.INFORMATION_MESSAGE,icoVirus);
+                JOptionPane.showMessageDialog(null, "URL inserida:\n" + entrada,"URL Confiável",JOptionPane.INFORMATION_MESSAGE,icoVirus);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Verifique se inseriu corretamente com o protocolo HTTP ou HTTPS\nExemplo: https://www.google.com.br/\nURL inserida: " + entrada, "URL Inválida", JOptionPane.INFORMATION_MESSAGE,icoErro);
