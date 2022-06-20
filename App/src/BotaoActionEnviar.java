@@ -46,7 +46,7 @@ public class BotaoActionEnviar implements ActionListener {
         if (entrada.contains("https")) {//Verifico o protocolo do endereco
             if(urlhttps.validaUrl(entrada)){//Chamo a função para verificar se o endereco é valido
                 urlhttps.setEndereco(entrada);//Quando válido, coloco na varíavel do objeto
-                if(!urlhttps.reputacao.verificaReputacaoNaLista(urlhttps.getEndereco())){
+                if(urlhttps.reputacao.verificaReputacaoNaLista(urlhttps.getEndereco())){
                     if(!addListaTestadas(urlhttps.getEndereco())){//Verifica se está repetido
                         urlsBloqueadas.add(urlhttps.getEndereco());//Se não for confiável, adiciona na lista
                         JOptionPane.showMessageDialog(null, "        Adicionada a lista de bloqueio\nURL inserida: " + entrada, "URL Não Confiável", JOptionPane.INFORMATION_MESSAGE,icoVirus);
@@ -58,8 +58,8 @@ public class BotaoActionEnviar implements ActionListener {
         } else if (entrada.contains("http")) {
             if(urlhttp.validaUrl(entrada)){
                 urlhttp.setEndereco(entrada);
-            if(!urlhttp.reputacao.verificaReputacaoNaLista(urlhttp.getEndereco()));
-                if(addListaTestadas(urlhttp.getEndereco())){//Verifica se está repetido
+            if(urlhttp.reputacao.verificaReputacaoNaLista(urlhttp.getEndereco()));
+                if(!addListaTestadas(urlhttp.getEndereco())){//Verifica se está repetido
                     urlsBloqueadas.add(urlhttp.getEndereco());//Se não for confiável, adiciona na lista
                     JOptionPane.showMessageDialog(null, "        Adicionada a lista de bloqueio\nURL inserida: " + entrada,"URL Não Confiável", JOptionPane.INFORMATION_MESSAGE,icoVirus);
                 }

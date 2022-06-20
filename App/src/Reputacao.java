@@ -24,7 +24,7 @@ public class Reputacao{
     }
 
     public boolean verificaReputacaoNaLista(String x){ //Tratar String
-        if(listaNaoConfiavel.contains(x)){
+        if(getListaNaoConfiavel().contains(x)){
             return true;
         }
         return false;
