@@ -31,6 +31,7 @@ public class Reputacao{
     }
 
     private String requestListaNaoConfiavel(){
+        
         URI uri = URI.create("https://raw.githubusercontent.com/Higor-Matos/JobPOO/master/App/hostsblock/listblock");
         HttpRequest request = HttpRequest.newBuilder(uri).build();
         String content = " ";
@@ -41,6 +42,7 @@ public class Reputacao{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        
         return content;
     }
 }
