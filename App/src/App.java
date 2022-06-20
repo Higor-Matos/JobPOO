@@ -1,10 +1,7 @@
 import java.awt.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class App{
     private static void setFont(FontUIResource myFont) {
