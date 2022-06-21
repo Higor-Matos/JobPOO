@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
-public class App{
+public class App {
     private static void setFont(FontUIResource myFont) {
         UIManager.put("CheckBoxMenuItem.acceleratorFont", myFont);
         UIManager.put("Button.font", myFont);
@@ -51,31 +51,32 @@ public class App{
         UIManager.put("InternalFrame.paletteTitleFont", myFont);
         UIManager.put("InternalFrame.titleFont", myFont);
     }
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-        JFrame frame = new JFrame(); //Janela
-        frame.setSize (500, 600); 
-        frame.setLocationRelativeTo(null);//Centralizando janela no meio
+
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
+            IllegalAccessException, UnsupportedLookAndFeelException {
+        JFrame frame = new JFrame(); // Janela
+        frame.setSize(500, 600);
+        frame.setLocationRelativeTo(null);// Centralizando janela no meio
         frame.setTitle("Adguard Hosts");
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE); 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
-        frame.setResizable(false);//Impedindo redimensionamento
-        
-        ImageIcon imagePng = new ImageIcon("App/images/icoAdguardTop.png");//Imagem
-        ImageIcon iconePng = new ImageIcon("App/images/icoAdguard.png");//Icone
+        frame.setResizable(false);// Impedindo redimensionamento
+
+        ImageIcon imagePng = new ImageIcon("D:/App/images/icoAdguardTop.png");// Imagem
+        ImageIcon iconePng = new ImageIcon("D:/App/images/icoAdguard.png");// Icone
         JLabel image = new JLabel();
         image.setIcon(imagePng);
-        frame.add(image,BorderLayout.NORTH);        
+        frame.add(image, BorderLayout.NORTH);
 
         JPanel p = new JPanel();
-        p.add(new JLabel("Insira URL para verificar confiabilidade:")); 
+        p.add(new JLabel("Insira URL para verificar confiabilidade:"));
         JTextField campoInsercao = new JTextField(340);
-        campoInsercao.setBounds(100,25,300,22);
+        campoInsercao.setBounds(100, 25, 300, 22);
         p.add(campoInsercao);
         JLabel exemplo = new JLabel("Exemplo: https://www.google.com.br/");
-        exemplo.setBounds(140,43,300,30);
+        exemplo.setBounds(140, 43, 300, 30);
         p.add(exemplo);
-        
-        
+
         JButton enviar = new JButton("Enviar");
         BotaoActionEnviar actionEnviar = BotaoActionEnviar.newInstance(campoInsercao);
         enviar.addActionListener(actionEnviar);
@@ -83,7 +84,7 @@ public class App{
         JButton listBlock = new JButton("URLs Bloqueadas");
         BotaoActionUrlListBlock actionListBlock = new BotaoActionUrlListBlock(new JTextField());
         listBlock.addActionListener(actionListBlock);
-        
+
         Reputacao r = new Reputacao();
         JTextArea textArea = new JTextArea(r.getListaNaoConfiavel());
         textArea.setLineWrap(true);
@@ -91,16 +92,20 @@ public class App{
         textArea.setEditable(false);
         JScrollPane scroll = new JScrollPane(textArea);
         scroll.setBorder(
-            BorderFactory.createCompoundBorder(
                 BorderFactory.createCompoundBorder(
+                        BorderFactory.createCompoundBorder(
                                 BorderFactory.createTitledBorder("URLs não confiáveis Adguard"),
-                                BorderFactory.createEmptyBorder(5,5,5,5)),
-                                scroll.getBorder()));
+                                BorderFactory.createEmptyBorder(5, 5, 5, 5)),
+                        scroll.getBorder()));
         scroll.setBounds(35, 120, 416, 250);
         textArea.setBounds(35, 120, 416, 250);
-        p.setLayout(null); //change jpanel layout to null
+        p.setLayout(null); // change jpanel layout to null
         p.add(scroll);
 
+        String s1[] = { "Lista Adguard", "Lista Adaway", "Lista Adblock" };
+        JComboBox c1 = new JComboBox(s1);
+        c1.setBounds(30, 190, 100, 30);
+        frame.add(c1);
 
         enviar.setBounds(185, 190, 120, 30);
         listBlock.setBounds(155, 500, 180, 30);
@@ -108,8 +113,8 @@ public class App{
         frame.add(listBlock);
         frame.add(p);
         frame.setIconImage(iconePng.getImage());
-        frame.setVisible(true);//Apresentando a janela
-        
+        frame.setVisible(true);// Apresentando a janela
+
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         setFont(new FontUIResource(new Font("Roboto Regular", Font.PLAIN, 12)));
         SwingUtilities.updateComponentTreeUI(frame);

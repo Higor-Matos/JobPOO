@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class BotaoActionEnviar implements ActionListener {
-    ImageIcon icoAtencao = new ImageIcon("App/images/icoAtencao.png");// Icone
-    ImageIcon icoErro = new ImageIcon("App/images/icoErro.png");// Icone
-    ImageIcon icoOk = new ImageIcon("App/images/icoOk.png");// Icone
-    ImageIcon icoVirus = new ImageIcon("App/images/icoVirus.png");// Icone
+    ImageIcon icoAtencao = new ImageIcon("D:/App/images/icoAtencao.png");// Icone
+    ImageIcon icoErro = new ImageIcon("D:/App/images/icoErro.png");// Icone
+    ImageIcon icoOk = new ImageIcon("D:/App/images/icoOk.png");// Icone
+    ImageIcon icoVirus = new ImageIcon("D:/App/images/icoVirus.png");// Icone
     public ArrayList<String> urlsBloqueadas = new ArrayList<>();
     private static BotaoActionEnviar botaoActionEnviar;
     private JTextField t;
@@ -51,16 +51,13 @@ public class BotaoActionEnviar implements ActionListener {
                         JOptionPane.showMessageDialog(null,
                                 "        Adicionada a lista de bloqueio\nURL inserida: " + entrada, "URL Não Confiável",
                                 JOptionPane.INFORMATION_MESSAGE, icoVirus);
+                        return;
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "URL inserida:\n" + entrada, "URL Confiável",
                             JOptionPane.INFORMATION_MESSAGE, icoOk);
+                    return;
                 }
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Verifique se inseriu corretamente com o protocolo HTTP ou HTTPS\nExemplo: https://www.google.com.br/\nURL inserida: "
-                                + entrada,
-                        "URL Inválida", JOptionPane.INFORMATION_MESSAGE, icoErro);
             }
         } else if (entrada.contains("http")) {// Verifico o protocolo do endereco
             if (urlhttp.validaUrl(entrada)) {// Chamo a função para verificar se o endereco é valido
@@ -71,17 +68,18 @@ public class BotaoActionEnviar implements ActionListener {
                         JOptionPane.showMessageDialog(null,
                                 "        Adicionada a lista de bloqueio\nURL inserida: " + entrada, "URL Não Confiável",
                                 JOptionPane.INFORMATION_MESSAGE, icoVirus);
+                        return;
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "URL inserida:\n" + entrada, "URL Confiável",
                             JOptionPane.INFORMATION_MESSAGE, icoOk);
+                    return;
                 }
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Verifique se inseriu corretamente com o protocolo HTTP ou HTTPS\nExemplo: https://www.google.com.br/\nURL inserida: "
-                                + entrada,
-                        "URL Inválida", JOptionPane.INFORMATION_MESSAGE, icoErro);
             }
         }
+        JOptionPane.showMessageDialog(null,
+                "Verifique se inseriu corretamente com o protocolo HTTP ou HTTPS\nExemplo: https://www.google.com.br/\nURL inserida: "
+                        + entrada,
+                "URL Inválida", JOptionPane.INFORMATION_MESSAGE, icoErro);
     }
 }
