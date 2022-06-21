@@ -102,10 +102,19 @@ public class App {
         p.setLayout(null); // change jpanel layout to null
         p.add(scroll);
 
-        String s1[] = { "Lista Adguard", "Lista Adaway", "Lista Adblock" };
+        //Em processo
+        String s1[] = { "Times New Roman", "Arial", "Lista Adblock" };
         JComboBox c1 = new JComboBox(s1);
         c1.setBounds(30, 190, 100, 30);
         frame.add(c1);
+        c1.getSelectedItem();
+        String selectJComboBox = c1.getSelectedItem() + "";
+
+        if (selectJComboBox.equals("Times New Roman")) {
+            setFont(new FontUIResource(new Font("Times New Roman", Font.PLAIN, 12)));
+            SwingUtilities.updateComponentTreeUI(frame);
+        }
+
 
         enviar.setBounds(185, 190, 120, 30);
         listBlock.setBounds(155, 500, 180, 30);
