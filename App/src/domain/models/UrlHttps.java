@@ -1,4 +1,4 @@
-
+package domain.models;
 //Utilizado para verificar Urls
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

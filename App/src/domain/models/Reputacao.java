@@ -1,3 +1,5 @@
+package domain.models;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -8,7 +10,7 @@ public class Reputacao{
     public boolean confiavel;
     private String listaNaoConfiavel;
 
-    Reputacao(){//Sempre começo o programa chamando a função para baixar as listas
+    public Reputacao(){//Sempre começo o programa chamando a função para baixar as listas
         try {
             setListaNaoConfiavel(requestListaNaoConfiavel());
         } catch (IOException | InterruptedException e) {

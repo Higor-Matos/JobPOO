@@ -1,3 +1,8 @@
+import domain.models.BotaoActionEnviar;
+import domain.models.BotaoActionUrlListBlock;
+import domain.models.Reputacao;
+import infra.factories.ImageFactory;
+
 import java.awt.*;
 
 import javax.swing.*;
@@ -62,8 +67,8 @@ public class App {
         frame.setLayout(new BorderLayout());
         frame.setResizable(false);// Impedindo redimensionamento
 
-        ImageIcon imagePng = new ImageIcon("D:/App/images/icoAdguardTop.png");// Imagem
-        ImageIcon iconePng = new ImageIcon("D:/App/images/icoAdguard.png");// Icone
+        ImageIcon imagePng = ImageFactory.getImage(ImageFactory.ADGUARD_TOP);// Imagem
+        ImageIcon iconePng = ImageFactory.getImage(ImageFactory.ADGUARD);// Icone
         JLabel image = new JLabel();
         image.setIcon(imagePng);
         frame.add(image, BorderLayout.NORTH);
@@ -78,7 +83,7 @@ public class App {
         p.add(exemplo);
 
         JButton enviar = new JButton("Enviar");
-        BotaoActionEnviar actionEnviar = BotaoActionEnviar.newInstance(campoInsercao);
+        BotaoActionEnviar actionEnviar = new BotaoActionEnviar(campoInsercao);
         enviar.addActionListener(actionEnviar);
 
         JButton listBlock = new JButton("URLs Bloqueadas");

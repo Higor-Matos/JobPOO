@@ -1,22 +1,27 @@
+package domain.models;
+
+import domain.entities.BlockedUrls;
+import infra.RealTimeDatabase;
+import infra.factories.ImageFactory;
+
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 
 import javax.swing.JOptionPane;
 
 public class BotaoActionEnviar implements ActionListener {
-    ImageIcon icoAtencao = new ImageIcon("D:/App/images/icoAtencao.png");// Icone
-    ImageIcon icoErro = new ImageIcon("D:/App/images/icoErro.png");// Icone
-    ImageIcon icoOk = new ImageIcon("D:/App/images/icoOk.png");// Icone
-    ImageIcon icoVirus = new ImageIcon("D:/App/images/icoVirus.png");// Icone
-    public ArrayList<String> urlsBloqueadas = new ArrayList<>();
+    ImageIcon icoAtencao = ImageFactory.getImage(ImageFactory.ATENCAO);// Icone
+    ImageIcon icoErro = ImageFactory.getImage(ImageFactory.ERRO);// Icone
+    ImageIcon icoOk = ImageFactory.getImage(ImageFactory.OK);// Icone
+    ImageIcon icoVirus = ImageFactory.getImage(ImageFactory.VIRUS);// Icone
     private static BotaoActionEnviar botaoActionEnviar;
     private JTextField t;
     UrlHttp urlhttp = new UrlHttp();
     UrlHttps urlhttps = new UrlHttps();
 
     public boolean addListaTestadas(String x) {
-        if (urlsBloqueadas.contains(x)) {
+        if (RealTimeDatabase.blockedUrls.contains(new BlockedUrls(x))) {
             return true; // Já está na lista, então ignorar
         }
         return false;// Não está na lista, então adicinar
@@ -24,17 +29,6 @@ public class BotaoActionEnviar implements ActionListener {
 
     public BotaoActionEnviar(JTextField t) {
         this.t = t;
-    }
-
-    public static BotaoActionEnviar newInstance(JTextField x) {
-        if (botaoActionEnviar == null) {
-            botaoActionEnviar = new BotaoActionEnviar(x);// Satisfazer construtor padrão);
-        }
-        return botaoActionEnviar;
-    }
-
-    public static BotaoActionEnviar getInstance() {
-        return botaoActionEnviar;
     }
 
     public void actionPerformed(ActionEvent e) {// Pegando o que foi digitado
@@ -47,7 +41,7 @@ public class BotaoActionEnviar implements ActionListener {
                 urlhttps.setEndereco(entrada);// Quando válido, coloco na varíavel do objeto
                 if (urlhttps.reputacao.verificaReputacaoNaLista(urlhttps.getEndereco())) {
                     if (!addListaTestadas(urlhttps.getEndereco())) {// Verifica se está repetido
-                        urlsBloqueadas.add(urlhttps.getEndereco());// Se não for confiável, adiciona na lista
+                        RealTimeDatabase.blockedUrls.add(new BlockedUrls(urlhttps.getEndereco()));// Se não for confiável, adiciona na lista
                         JOptionPane.showMessageDialog(null,
                                 "        Adicionada a lista de bloqueio\nURL inserida: " + entrada, "URL Não Confiável",
                                 JOptionPane.INFORMATION_MESSAGE, icoVirus);
@@ -64,7 +58,7 @@ public class BotaoActionEnviar implements ActionListener {
                 urlhttp.setEndereco(entrada);// Quando válido, coloco na varíavel do objeto
                 if (urlhttp.reputacao.verificaReputacaoNaLista(urlhttp.getEndereco())) {
                     if (!addListaTestadas(urlhttp.getEndereco())) {// Verifica se está repetido
-                        urlsBloqueadas.add(urlhttp.getEndereco());// Se não for confiável, adiciona na lista
+                        RealTimeDatabase.blockedUrls.add(new BlockedUrls(urlhttps.getEndereco()));// Se não for confiável, adiciona na lista
                         JOptionPane.showMessageDialog(null,
                                 "        Adicionada a lista de bloqueio\nURL inserida: " + entrada, "URL Não Confiável",
                                 JOptionPane.INFORMATION_MESSAGE, icoVirus);

@@ -1,3 +1,5 @@
+package domain.models;
+
 public abstract class UrlAbstrata{
     private String Endereco;
     public Reputacao reputacao;
