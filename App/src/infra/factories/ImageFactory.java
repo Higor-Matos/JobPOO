@@ -18,14 +18,30 @@ public class ImageFactory {
     public static ImageIcon getImage(String imageName) {
         ImageIcon imageIcon = null;
         switch (imageName) {
-            case ADGUARD: imageIcon = imageFactory("icoAdguard.png");
-            case ADGUARD_TOP: imageIcon = imageFactory("icoAdguardTop.png");
-            case ATENCAO: imageIcon = imageFactory("icoAtencao.png");
-            case ERRO: imageIcon = imageFactory("icoErro.png");
-            case LIST_VIRUS: imageIcon = imageFactory("icoListVirus.png");
-            case OK: imageIcon =  imageFactory("icoOk.png");
-            case VAZIO: imageIcon = imageFactory("icoVazio.png");
-            case VIRUS: imageIcon = imageFactory("icoVirus.png");
+            case ADGUARD:
+                imageIcon = imageFactory("icoAdguard.png");
+                break;
+            case ADGUARD_TOP:
+                imageIcon = imageFactory("icoAdguardTop.png");
+                break;
+            case ATENCAO:
+                imageIcon = imageFactory("icoAtencao.png");
+                break;
+            case ERRO:
+                imageIcon = imageFactory("icoErro.png");
+                break;
+            case LIST_VIRUS:
+                imageIcon = imageFactory("icoListVirus.png");
+                break;
+            case OK:
+                imageIcon = imageFactory("icoOk.png");
+                break;
+            case VAZIO:
+                imageIcon = imageFactory("icoVazio.png");
+                break;
+            case VIRUS:
+                imageIcon = imageFactory("icoVirus.png");
+                break;
         }
         return imageIcon;
     }
